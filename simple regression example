@@ -1,0 +1,58 @@
+
+
+hf<-read.csv("http://www.math.uah.edu/stat/data/Galton.csv",
+header=TRUE, stringsAsFactors =
+FALSE)
+
+head(hf)
+
+str(hf) 
+
+str(hf$Gender)
+
+hf$Gender<-factor(hf$Gender)
+
+str(hf$Gender)
+
+hf.son<-subset(hf,
+Gender=="M")
+
+head(hf.son)
+
+hf.son<-hf.son[c("Father","Mother","Height")]
+
+head(hf.son)
+
+str(hf.son)
+
+par(mar=c(4,4,1,1))
+
+plot(hf.son$Father, hf.son$Height, xlab="아버지의 키",
+ylab="아들의 키", main=" 아버지와 아들의 키")
+
+abline(v=mean(hf.son$Father),
+col=2, lty=2)
+
+abline(h=mean(hf.son$Height),
+col=3, lty=5)
+
+lm(Height~Father,
+data=hf.son)
+
+hf.son.lm<-lm(Height~Father,
+data=hf.son)
+
+hf.son.lm 
+
+summary(hf.son.lm)
+
+
+
+
+ hf.son.lm2<-lm(Height~Father+Mother,
+data=hf.son)
+
+summary(hf.son.lm)
+
+summary(hf.son.lm2)
+
