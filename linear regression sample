@@ -1,0 +1,105 @@
+//  직선을 그림으로 나타내기
+
+
+plot(c(3,4), c(7,4), ylab="y",xlab="x",
+main="Slope form coordiantes(3,7)
+and( 4,4)", ylim=c(0,10),
+xlim=c(0,10))
+
+lines(c(3,3), c(7,4))   
+lines(c(3,4), c(4,4))  
+
+
+
+text(2,5.5, "delta Y")  
+text(3.5,3.5, "delta X")
+
+
+
+lines(c(3,4), c(7,4),col="red",lwd=3)  
+
+abline(16,-3)  
+
+
+// Data set 
+
+gapdh.qPCR <- read.table(header=TRUE,text='
+GAPDH RNA_ng A1 A2 A3
+std_curve 50 16.5 16.7 16.7
+std_curve 10 19.3 19.2 19
+std_curve 2 21.7 21.5 21.2
+std_curve 0.4 24.5 24.1 23.5
+std_curve 0.08 26.7 27 26.5
+std_curve 0.016 36.5 36.4 37.2
+')
+
+str(gapdh.qPCR)
+
+gapdh.qPCR
+
+
+
+library("reshape2")
+
+gapdh.qPCR <- melt(gapdh.qPCR, id.vars=c("GAPDH",
+"RNA_ng"),
+value.name="Ct_Value")
+
+str(gapdh.qPCR)
+
+gapdh.qPCR
+
+// Linear model
+
+
+attach(gapdh.qPCR)
+
+names(gapdh.qPCR)
+
+GAPDH
+
+RNA_ng
+
+
+
+
+
+par(mfrow=c(1,2))
+
+plot(RNA_ng, Ct_Value)
+
+
+
+plot(log(RNA_ng), Ct_Value)
+
+
+
+lm(Ct_Value ~ log(RNA_ng))
+
+
+
+model <- lm(Ct_Value ~log(RNA_ng))
+
+summary(model)
+
+summary.aov(model)
+
+
+
+par(mfrow=c(2,2))
+
+plot(model)
+
+
+
+RNA_ng[18]
+
+Ct_Value[18]
+
+
+
+model2 <- update(model, subset=(Ct_Value!=37.2))
+
+summary(model2)
+
+
