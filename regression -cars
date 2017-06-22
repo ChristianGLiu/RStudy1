@@ -1,0 +1,45 @@
+head(cars)
+str(cars)
+
+plot(cars)
+
+cars.lm<-lm(dist~speed, data=cars)
+summary(cars.lm)
+
+abline(cars.lm)
+
+
+cars.lm.no<-lm(dist~speed -1, data=cars)
+summary(cars.lm.no)
+abline(cars.lm.no, col="red")
+
+
+
+par(mfrow=c(1,3))
+plot(dist~speed, data=cars)
+plot(log(dist)~speed, data=cars)
+plot(sqrt(dist)~speed, data=cars)
+
+cars.lm.sqrt<-lm(sqrt(dist)~speed -1, data=cars)
+summary(cars.lm.sqrt)
+abline(cars.lm.sqrt)
+
+
+par(mfrow=c(2,2))
+plot(cars.lm.sqrt)
+
+fitted(cars.lm.sqrt)
+
+resid(cars.lm.sqrt)
+
+
+
+
+pairs(attitude)
+
+att.lm.all<-lm(rating~., data=attitude)
+summary(att.lm.all)
+
+anova(att.lm.all)
+
+
