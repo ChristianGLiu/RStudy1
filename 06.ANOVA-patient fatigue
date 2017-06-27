@@ -34,3 +34,10 @@ modelB<-update(modelA, subset = (patients !=20))
 summary(modelB)
 
 summary.lm(modelB)
+
+
+patient.sex <- as.factor(c("F", "F", "F", "M", "M", "F", "M", "M", "M", "F", "F", "M", "M", "F", "F", "F", "M", "M", "F", "M"))
+modelC = aov(drugA_dose ~ fatigue*patient.sex)
+summary(modelC)
+
+
