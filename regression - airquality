@@ -1,0 +1,14 @@
+ head(airquality)
+ str(airquality)
+ pairs(airquality)
+ 
+aq.lm.all<-lm(Ozone~Solar.R+Wind+Temp, data=airquality)
+summary(aq.lm.all)
+
+anova(aq.lm.all)
+
+par(mfrow=c(2,2))
+plot(aq.lm.all)
+
+aq.lm.temp<-update(aq.lm.all,~.-Solar.R-Wind)
+summary(aq.lm.temp)
