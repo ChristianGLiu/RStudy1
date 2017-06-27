@@ -1,1 +1,36 @@
 
+patient.fatigue <- read.table(header=TRUE, text='patients fatigue drugA_dose1 
+1 low 0.22 
+2 low 0.23 
+3 med 0.24 
+4 med 0.25 
+5 med 0.26 
+6 low 0.47 
+7 low 0.48 
+8 low 0.49 
+9 med 0.410 
+10 med 0.411 
+11 med 0.812 
+12 high 0.813 
+13 med 0.814 
+14 med 0.815 
+15 high 0.816 
+16 high 1.217 
+17 high 1.218 
+18 high 1.219 
+19 high 1.220 
+20 med 1.2 ')
+
+patient.fatigue
+attach(patient.fatigue)
+
+modelA<-aov(drugA_dose~fatigue)
+summary(modelA)
+
+par(mfrow=c(2,2))
+plot(modelA)
+
+modelB<-update(modelA, subset = (patients !=20))
+summary(modelB)
+
+summary.lm(modelB)
