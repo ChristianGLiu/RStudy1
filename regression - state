@@ -1,0 +1,13 @@
+head(state.x77)
+str(state.x77)
+pairs(state.x77)
+
+states <- as.data.frame(state.x77[,c("Murder", "Population", "Illiteracy", "Income", "Frost")])
+pairs(states)
+
+state.lm.all<-lm(Murder~., data=states)
+summary(state.lm.all)
+
+ anova(state.lm.all)
+ 
+ 
