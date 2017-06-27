@@ -34,12 +34,3 @@ resid(cars.lm.sqrt)
 
 
 
-
-pairs(attitude)
-
-att.lm.all<-lm(rating~., data=attitude)
-summary(att.lm.all)
-
-anova(att.lm.all)
-
-
