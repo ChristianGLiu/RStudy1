@@ -8,6 +8,29 @@ pairs(states)
 state.lm.all<-lm(Murder~., data=states)
 summary(state.lm.all)
 
- anova(state.lm.all)
- 
+anova(state.lm.all)
+
+state.lm.PI<-lm(Murder~Population+Illiteracy, data=states)
+summary(state.lm.PI)
+
+anova(state.lm.PI, state.lm.all)
+
+anova(state.lm.PI)
+
+state.lm.P<-lm(Murder~Population, data=states)
+summary(state.lm.P)
+anova(state.lm.P, state.lm.PI)
+
+par(mfrow=c(2,2))
+plot(state.lm.PI)
+
+
+rownames(states)
+states2<-states[rownames(states)!="Nevada",]
+states
+states2
+
+states2.lm<-lm(Murder~Population+Illiteracy, data=states2)
+summary(states2.lm)
+summary(state.lm.PI)
  
