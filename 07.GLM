@@ -1,0 +1,23 @@
+cmp1.ld <- read.table(header=TRUE, 
+text='lethaldose sex numdead numalive
+1 0 M 1 19
+2 1 M 3 17
+3 2 M 9 11
+4 3 M 14 6
+5 4 M 17 3
+6 5 M 20 0
+7 0 F 0 20
+8 1 F 2 18
+9 2 F 2 18
+10 3 F 3 17
+11 4 F 4 16
+12 5 F 6 14')
+
+attach(cmp1.ld)
+
+proportion_dead <- numdead/20
+plot(proportion_dead ~ lethaldose, pch=as.character(sex))
+
+proportion_dead <- numdead/20plot(proportion_dead ~ lethaldose, pch=as.character(sex))
+counts <- cbind(numdead, numalive)cmp1.ld.model <- glm( counts ~ sex * lethaldose, family=binomial)
+summary(cmp1.ld.model)
