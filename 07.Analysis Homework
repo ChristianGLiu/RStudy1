@@ -1,0 +1,12 @@
+fileurl1<-c("http://www-eio.upc.edu/~pau/cms/rdata/csv/Ecdat/Workinghours.csv")
+download.file(fileurl1, destfile="workinghours.csv")
+wh<-read.table("workinghours.csv", sep=',',header=TRUE)
+head(wh)
+str(wh)
+
+
+fileurl2<-c("http://www-eio.upc.edu/~pau/cms/rdata/csv/datasets/InsectSprays.csv")
+download.file(fileurl2, destfile="spray.csv")
+spray<-read.table("spray.csv", sep=',',header=TRUE)
+head(spray)
+str(spray)
