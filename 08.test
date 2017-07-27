@@ -1,0 +1,36 @@
+fileurl1<-c("http://www-eio.upc.edu/~pau/cms/rdata/csv/Ecdat/Workinghours.csv")
+download.file(fileurl1, destfile="workinghours.csv")
+wh<-read.table("workinghours.csv", sep=',',header=TRUE)
+head(wh)
+str(wh)
+
+
+fileurl2<-c("http://www-eio.upc.edu/~pau/cms/rdata/csv/datasets/InsectSprays.csv")
+download.file(fileurl2, destfile="spray.csv")
+spray<-read.table("spray.csv", sep=',',header=TRUE)
+head(spray)
+str(spray)
+
+
+//T test
+wh$mortgage<-as.factor(wh$mortgage)
+str(wh)
+
+wh1<-wh[wh$mortgage=="1",2]
+wh0<-wh[wh$mortgage=="0",2]
+boxplot(hours~mortgage,data=wh)
+
+t.test(wh1,wh0)
+
+
+//회귀분석
+wh3<-wh[,c(2,3,5)]
+paris(wh3)
+wh.lm<-lm(hours~., data=wh3)
+summary(wh.lm)
+
+
+//분산분석
+boxplot(count~spray, data=spray)
+sp.aov<-aov(count~spray, data=spray)
+summary(sp.aov)
